@@ -1,19 +1,28 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import List from "./components/List";
+import AddToList from "./components/AddToList";
 
-interface IState {
-  people: { name: string; age: number; url: string; note?: string }[];
+export interface IState {
+  //set interface for skills
+  skills: { name: string; url: string; note?: string }[];
 }
 
 function App() {
-  const [people, setPeople] = useState<IState["people"]>([]);
+  //set type for skills using interface
+  const [skills, setSkills] = useState<IState["skills"]>([
+    {
+      name: "JavaScript",
+      url: "",
+      note: "My favourite language",
+    },
+  ]);
 
   return (
     <div className="App">
-      <h1>People invited to my party</h1>
-      <List people={people} />
+      <h1>Skills that I like</h1>
+      <List skills={skills} />
+      <AddToList skills={skills} setSkills={setSkills} />
     </div>
   );
 }
